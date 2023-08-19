@@ -25,7 +25,12 @@ void consoleevent::checkForNewFile() {
             rawStandardOut.truncate(truncateAt - 1);
             currentFileChecksum = rawStandardOut;
             if (currentFileChecksum != oldFileChecksum) {
-                //File changed, copy to application local dir
+                //File changed, see if destination file already exists..
+                QFileInfo destination_file(QDir::currentPath() + "/img.png");
+                if (destination_file.exists()) {
+                    QFile::remove(QDir::currentPath()+"/img.png");
+                }
+                //copy image application local dir
                 if (!QFile::copy("/tmp/img.png", QDir::currentPath()+"/img.png")) {
                     //Error copying file
                     qDebug() << "Error Copying file to application directory!\n";
