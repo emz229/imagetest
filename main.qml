@@ -30,18 +30,21 @@ Window {
            Expects: image to be 800x480 pixels"
     }
 
-//    Timer{
-//        id: delayedQuit
-//        running: true
-//        repeat: false
-//        interval: 500
-//        onTriggered: Qt.quit()
-//    }
+    Timer{
+        id: checkforNewImage
+        running: true
+        repeat: true
+        interval: 5000
+        onTriggered: consoleEvent.runCommand()
+    }
 
     Connections {
         target: consoleEvent
         function onCommandComplete() {
-            delayedQuit.stop() //TODO get / display stdOut, setErr strings
+            instructionText.text = "Output: " + consoleEvent.getStdOutput() +
+                    "<br>Error: " + consoleEvent.getStdError()
+            //instructionText.visible = false
+            backgroundImage.source = "/tmp/img.png"
         }
     }
 
