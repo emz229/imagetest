@@ -18,12 +18,18 @@ Window {
         anchors.top: parent.top
         opacity: 0.50
         color: "blue"
+
         Text {
             id: quitButtonText
             anchors.centerIn: parent
             font.pointSize: 18
             color: "white"
             text: "Quit"
+        }
+
+        MouseArea {
+            anchors.fill: parent
+            onClicked: Qt.quit()
         }
     }
 
