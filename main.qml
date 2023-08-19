@@ -10,22 +10,12 @@ Window {
         console.log("Display width:", Screen.width);
     }
 
-    Item {
-        Component {
-            id: backgroundImageComponent
-            Image {
-                id: backgroundImage
-                anchors.fill: primaryWindow
-                fillMode: Image.PreserveAspectFit
-                source: imageLoader.sourceImage
-            }
-        }
-
-        Loader {
-            id: imageLoader
-            property string sourceImage: "background.png"
-            sourceComponent: backgroundImageComponent
-        }
+    Image {
+        id: backgroundImage
+        anchors.fill: parent
+        fillMode: Image.PreserveAspectFit
+        cache: false
+        source: "background.png"
     }
 
     Text {
@@ -52,19 +42,11 @@ Window {
     Connections {
         target: consoleEvent
         function onNewImageReady () {
-            if (imageLoader.sourceImage == "file:img.png") {
-                imageLoader.sourceComponent = undefined
+            if (backgroundImage.source == "file:img.png") {
+                backgroundImage.source = "background.png"
             }
-            imageLoader.sourceImage = "file:img.png"
-            imageLoader.sourceComponent = backgroundImageComponent
+            backgroundImage.source = "file:img.png"
         }
-
-//        function onCommandComplete() {
-//            instructionText.text = "Output: " + consoleEvent.getStdOutput() +
-//                    "<br>Error: " + consoleEvent.getStdError()
-//            //instructionText.visible = false
-//            backgroundImage.source = "file:img.png"
-//        }
     }
 
     /* I MUST BE THE LAST ITEM SO IM ALWAYS VISIBLE!! */
