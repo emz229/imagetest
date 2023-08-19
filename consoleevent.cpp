@@ -8,6 +8,8 @@ consoleevent::consoleevent(QObject *parent) : QObject(parent)
 
 void consoleevent::runCommand() {
     QProcess cmdProcess;
+    stdOutStr = "";
+    stdErrStr = "";
     cmdProcess.start("md5sum /tmp/img.png");
     cmdProcess.waitForFinished(300); //Will hang here waiting to finish, should be quick
     stdOutStr = cmdProcess.readAllStandardOutput();

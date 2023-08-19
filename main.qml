@@ -44,7 +44,7 @@ Window {
             instructionText.text = "Output: " + consoleEvent.getStdOutput() +
                     "<br>Error: " + consoleEvent.getStdError()
             //instructionText.visible = false
-            backgroundImage.source = "/tmp/img.png"
+            backgroundImage.source = "file:img.png"
         }
     }
 
