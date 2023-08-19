@@ -35,11 +35,15 @@ Window {
         running: true
         repeat: true
         interval: 5000
-        onTriggered: consoleEvent.runCommand()
+        onTriggered: consoleEvent.checkForNewFile()
     }
 
     Connections {
         target: consoleEvent
+        function onNewImageReady () {
+            backgroundImage.source = "file:img.png"
+        }
+
         function onCommandComplete() {
             instructionText.text = "Output: " + consoleEvent.getStdOutput() +
                     "<br>Error: " + consoleEvent.getStdError()
