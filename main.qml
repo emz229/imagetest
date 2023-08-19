@@ -22,7 +22,7 @@ Window {
         Text {
             id: quitButtonText
             anchors.centerIn: parent
-            font.pointSize: 18
+            font.pointSize: 16
             color: "white"
             text: "Quit"
         }
@@ -31,6 +31,26 @@ Window {
             anchors.fill: parent
             onClicked: Qt.quit()
         }
+    }
+
+    Image {
+        id: backgroundImage
+        anchors.fill: parent
+        fillMode: Image.PreserveAspectFit
+        source: "background.png"
+    }
+
+    Text {
+        id: instructionText
+        anchors.left: parent.left
+        anchors.leftMargin: 10
+        font.pointSize: 16
+        textFormat: Text.RichText
+        color: "white"
+        text: "<u>Instructions:</u>\n
+           Goto: imagetest.local in a browser\n
+           Upload: a png file no larger than 10M\n
+           Expects: image to be 800x480 pixels"
     }
 
 //    Timer{
@@ -42,7 +62,7 @@ Window {
 //    }
 
     Connections {
-        target: eventHandler
+        target: consoleEvent
         onCommandComplete: delayedQuit.stop() //TODO get / display stdOut, setErr strings
     }
 }
