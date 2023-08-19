@@ -52,7 +52,11 @@ Window {
     Connections {
         target: consoleEvent
         function onNewImageReady () {
+            if (imageLoader.sourceImage == "file:img.png") {
+                imageLoader.sourceComponent = undefined
+            }
             imageLoader.sourceImage = "file:img.png"
+            imageLoader.sourceComponent = backgroundImageComponent
         }
 
 //        function onCommandComplete() {

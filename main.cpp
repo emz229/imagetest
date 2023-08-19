@@ -2,7 +2,6 @@
 #include <QQmlApplicationEngine>
 #include <QtQuick>
 #include "consoleevent.h"
-#include "expandedqmlengine.h"
 
 int main(int argc, char *argv[])
 {
@@ -10,7 +9,7 @@ int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
 
-    expandedQmlEngine engine;
+    QQmlApplicationEngine engine;
     consoleevent eventHandler;
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
@@ -19,7 +18,6 @@ int main(int argc, char *argv[])
         if (!obj && url == objUrl)
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
-    engine.rootContext()->setContextProperty("$QmlEngine", &engine);
     engine.rootContext()->setContextProperty("consoleEvent", &eventHandler);
     engine.load(url);
 

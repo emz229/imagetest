@@ -11,7 +11,6 @@ CONFIG += release
 
 SOURCES += \
         consoleevent.cpp \
-        expandedqmlengine.cpp \
         main.cpp
 
 RESOURCES += qml.qrc
@@ -28,5 +27,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    consoleevent.h \
-    expandedqmlengine.h
+    consoleevent.h
