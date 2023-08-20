@@ -17,7 +17,7 @@ void consoleevent::checkForNewFile() {
         QString rawStandardError = "";
         QProcess getMD5sum;
         getMD5sum.start("md5sum /tmp/img.png");
-        getMD5sum.waitForFinished(20); //Only Wait 20ms
+        getMD5sum.waitForFinished(100); //Wait 100ms
         rawStandardOut = getMD5sum.readAllStandardOutput();
         rawStandardError = getMD5sum.readAllStandardError();
         if (rawStandardOut.contains("/")) {
