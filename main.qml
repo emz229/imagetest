@@ -19,15 +19,25 @@ Window {
     }
 
     Text {
+        id: thoughtText
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: parent.top
+        font.pointSize: 18
+        color: "white"
+        text: "Hmmm where is my background image..."
+    }
+
+    Text {
         id: instructionText
         anchors.left: parent.left
         anchors.leftMargin: 10
+        anchors.verticalCenter: parent.verticalCenter
         font.pointSize: 16
         textFormat: Text.RichText
         color: "white"
         text: "<u>Instructions:</u><br>
            Goto: imagetest.local in a browser<br>
-           Upload: a png file no larger than 10M<br>
+           Upload: a png file no larger than 2M<br>
            Expects: image to be 800x480 pixels"
     }
 
@@ -42,6 +52,7 @@ Window {
     Connections {
         target: consoleEvent
         function onNewImageReady () {
+            thoughtText.visible = false
             if (backgroundImage.source == "file:img.png") {
                 backgroundImage.source = "background.png"
             }
